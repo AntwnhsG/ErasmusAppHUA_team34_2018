@@ -1,3 +1,5 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,14 +80,14 @@ span.psw {
 		</div>
 	</form>
 	
-	<form action="processLoginForm" method = "post">
+	<form:form action="${pageContext.request.contextPath}/authUser" method = "post">
 		<div class="container">
 		
-			<label for="uname"> 
+			<label> 
 				<b>Username</b>
 			</label> 
 			<input type="text" placeholder="Enter Username" name="username"required> 
-			<label for="psw"> 
+			<label> 
 				<b>Password</b>
 			</label> 
 			<input type="password" placeholder="Enter Password" name="password" required>
@@ -97,6 +99,6 @@ span.psw {
 			<button type="button" class="cancelbtn">Cancel</button>
 			
 		</div>
-	</form>
+	</form:form>
 </body>
 </html>
