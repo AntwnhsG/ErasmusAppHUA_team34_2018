@@ -18,12 +18,12 @@ public class HomeController {
 	public String huaErasmusPage() {
 		return "huaErasmus";
 	}
-
+/*
 	@GetMapping("/showLoginForm")
 	public String showLoginForm() {
 		return "login_form";
 	}
-
+*/
 	@Autowired
 	private StudentDAO StudentDAO;
 	@Autowired
@@ -32,23 +32,23 @@ public class HomeController {
 	@RequestMapping("/processLoginForm")
 	public String processLoginForm(HttpServletRequest request, Model model) {
 
-		int successResult = 0;
-		String theUsername = request.getParameter("username");
+		//int successResult = 0;
+		String theUsername = request.getParameter("U_username");
 		theUsername = theUsername.toUpperCase();
-		String thePassword = request.getParameter("password");
+		String thePassword = request.getParameter("U_password");
 		// get customers from dao
 		//every secretary user has a username that starts with S
 		if (theUsername.startsWith("S")) { 
-			successResult = SecretaryDAO.checkCredentials(theUsername, thePassword);
-			if (successResult == 1) {
+			//successResult = SecretaryDAO.checkCredentials(theUsername, thePassword);
+			//if (successResult == 1) {
 				return "sec_home";
-			}
+			//}
 			//every student has a username that starts with E
 		} else if (theUsername.startsWith("E")) {
-			successResult = StudentDAO.checkCredentials(theUsername, thePassword);
-			if (successResult == 1) {
+			//successResult = StudentDAO.checkCredentials(theUsername, thePassword);
+			//if (successResult == 1) {
 				return "studentWelcomePage";
-			}
+			//}
 		}
 		return "login_form";
 	}

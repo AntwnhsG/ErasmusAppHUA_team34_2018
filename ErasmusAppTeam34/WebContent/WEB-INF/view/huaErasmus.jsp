@@ -8,7 +8,7 @@
 </head>
 <body>
 	Welcome to the erasmus site of Harokopio University
-	<form action="showLoginForm" method="GET" id="form"></form>
+	<form action="processLoginForm" method="GET" id="form"></form>
 	<button type="submit" form="form" value="Submit">Sign in</button>
 </body>
 </html>
