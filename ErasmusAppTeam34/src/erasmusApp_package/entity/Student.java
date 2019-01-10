@@ -31,21 +31,52 @@ public class Student {
 	@Column(name = "email")
 	private String email;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "stud_id")
-	private List<Application> applications;
-
-	public Student() {
-
-	}
-
-	public int getId() {
+	@Column(name = "current_semester")
+	private String current_semester;
+	
+	@Column(name = "num_not_passed_courses")
+	private String num_not_passed_courses;
+	
+	@Column(name = "num_of_apps")
+	private int numOfApps;
+	
+	public int getStudent_id() {
 		return student_id;
 	}
 
-	public void setId(int id) {
-		this.student_id = id;
+	public void setStudent_id(int student_id) {
+		this.student_id = student_id;
 	}
+
+	public String getCurrent_semester() {
+		return current_semester;
+	}
+
+	public void setCurrent_semester(String current_semester) {
+		this.current_semester = current_semester;
+	}
+
+	public String getNum_not_passed_courses() {
+		return num_not_passed_courses;
+	}
+
+	public void setNum_not_passed_courses(String num_not_passed_courses) {
+		this.num_not_passed_courses = num_not_passed_courses;
+	}
+	
+	public int getNumOfApps() {
+		return numOfApps;
+	}
+
+	public void setNumOfApps(int numOfApps) {
+		this.numOfApps = numOfApps;
+	}
+
+
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "stud_id")
+	private List<Application> applications;
 
 	public String getFirstName() {
 		return firstName;

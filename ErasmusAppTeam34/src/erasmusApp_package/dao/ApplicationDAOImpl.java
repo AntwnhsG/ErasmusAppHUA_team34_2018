@@ -29,7 +29,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		app.setStud_email(sEmail);
 		app.setStud_id(sID);
 		app.setUniv_id(uID);
-		app.setLanguageOption(KTL);app.setIsApproved("NO");
+		app.setLanguageOption(KTL);app.setIsApproved("PENDING");
 		currentSession.save(app);
 		String succ = "Application Submitted Successfuly";
 		return succ;

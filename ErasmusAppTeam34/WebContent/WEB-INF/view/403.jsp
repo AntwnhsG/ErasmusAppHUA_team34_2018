@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>You don't have permission to view this content</h1>
 </body>
 </html>

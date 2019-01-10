@@ -11,13 +11,14 @@
 		<br>
 		<button type = "submit" formaction ="createAppForm">Fill an Application</button>
 		 <br>
-		<a href="userProfile">My profile</a> 
+		<button type = "submit" formaction ="student_Profile">My profile</button>
 		<br>
 				<!--  	<a href="myApplications">My applications</a>  -->
 		<button type = "submit" formaction ="myApplications">My applications</button>
 		<br>
-		<a href="log_out">Log out</a>
+		<button type = "submit" formaction ="Log_Out">Log Out</button>
 ${appCreatedMessage}
+${message}
 </form>
 </body>
 </html>

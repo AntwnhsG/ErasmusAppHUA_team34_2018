@@ -7,13 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
-		<input type = "hidden" value = "${param.username}" name = "username">
+	<form action = "student/getStudent">
 		Welcome to the erasmus exchange application
 		<br>
 		Please always double check the information that is listed and the information that you submit!
 		<br>
-		<button type = "submit" formaction = "student/getStudent">PROCEED</button>>
+		<button type = "submit">PROCEED</button>>
 	</form>
 </body>
 </html>

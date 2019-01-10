@@ -49,6 +49,26 @@ public class StudentDAOImpl implements StudentDAO {
 	
 	@Override
 	@Transactional
+	public Student getStudInfo(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("from Student where student_id = '" +id+ "'");
+		List<Student> student = query.getResultList();
+		return student.get(0);
+	}
+	
+	@Override
+	@Transactional
+	public void setNumOfApps(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Student student = getStudInfo(id);
+		int numOfApps = student.getNumOfApps() + 1;
+		Query query = currentSession.createQuery("update student set num_of_apps = '" +numOfApps+ "'"+ "where student_id = '" +id+ "'");
+		
+	}
+	
+	/*
+	@Override
+	@Transactional
 	//get username and password from DB to check the credentials
 	//returns 1 if user exists or 0 otherwise
 	public int checkCredentials(String givenUsername, String givenPassword) {
@@ -65,5 +85,6 @@ public class StudentDAOImpl implements StudentDAO {
 		return successResult.get(0).intValue();
 
 	}
+	*/
 	
 }

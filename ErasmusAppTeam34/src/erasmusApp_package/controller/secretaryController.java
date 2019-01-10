@@ -2,6 +2,7 @@ package erasmusApp_package.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,11 @@ public class secretaryController {
 	public String getUniversities(Model model){
 		// get universities from university table
 		List<University> universities = UniversityDAO.getUniversities();
-
+		if(universities.size() == 0) {
+			String message = "There are no universities in the database. Please consider adding one!";
+			model.addAttribute("message", message);
+			return "sec_univOptions";
+		}
 		// add the customers to the model
 		model.addAttribute("universities", universities);
 
@@ -59,7 +64,7 @@ public class secretaryController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		University univ = UniversityDAO.getUniversity(id);
 		model.addAttribute("university", univ);
-		return "editAppPage";
+		return "sec_editUnivPage";
 	}
 	// update the univetsity selected from the jsp page (update database)
 	@RequestMapping("/updateUniv")
@@ -68,6 +73,10 @@ public class secretaryController {
 		String newValue = request.getParameter("newValue");
 		String id = request.getParameter("id");
 		String succ = UniversityDAO.updateUniversity(columnName, newValue, id);
+		if(succ.equals("failed")) {
+			model.addAttribute("UpdateStatus", "Wrong column name. please try again");
+			return "sec_editUnivPage";
+		}
 		model.addAttribute("UpdateStatus", succ);
 		return "sec_univOptions";
 	}
@@ -79,5 +88,11 @@ public class secretaryController {
 		String succ = UniversityDAO.deleteUniversity(id);
 		model.addAttribute("deleteStatus", succ);
 		return "sec_univOptions";
+	}
+	
+	@RequestMapping("Log_Out")
+	public String logOut(HttpServletRequest request) throws ServletException {
+		request.logout();
+		return "/login_form";
 	}
 }

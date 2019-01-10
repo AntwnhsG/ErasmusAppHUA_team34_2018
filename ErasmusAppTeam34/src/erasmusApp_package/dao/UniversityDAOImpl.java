@@ -39,19 +39,17 @@ public class UniversityDAOImpl implements UniversityDAO {
 	@Override
 	@Transactional
 	// add a university to the database
-	public String setUniversity(/*int univ_id, */String country, String city, String univ_name, int available_room) {
+	public String setUniversity(/* int univ_id, */String country, String city, String univ_name, int available_room) {
 		University univ = new University();
 		Session currentSession = sessionFactory.getCurrentSession();
 		/*
-		Query query = currentSession.createSQLQuery("INSERT INTO university (country, city ,univ_name, available_room) "
-		+ "VALUES (:country, :city, :name, :room)");
-		//query.setParameter("id", univ_id);
-		query.setParameter("country", country);
-		query.setParameter("city", city);
-		query.setParameter("name", univ_name);
-		query.setParameter("room", available_room);
-		query.executeUpdate();
-		*/
+		 * Query query = currentSession.
+		 * createSQLQuery("INSERT INTO university (country, city ,univ_name, available_room) "
+		 * + "VALUES (:country, :city, :name, :room)"); //query.setParameter("id",
+		 * univ_id); query.setParameter("country", country); query.setParameter("city",
+		 * city); query.setParameter("name", univ_name); query.setParameter("room",
+		 * available_room); query.executeUpdate();
+		 */
 		univ.setAvailable_room(available_room);
 		univ.setCity(city);
 		univ.setUniv_name(univ_name);
@@ -60,19 +58,19 @@ public class UniversityDAOImpl implements UniversityDAO {
 		String succ = "The information was succesfully added";
 		return succ;
 	}
-	
+
 	@Override
 	@Transactional
 	// get a selected university from the database
-	public University getUniversity(int id){
+	public University getUniversity(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query query = currentSession.createQuery("from University where university_id = :id", University.class);
 		query.setParameter("id", id);
 		List<University> univ = query.getResultList();
 		return univ.get(0);
-		
+
 	}
-	
+
 	@Override
 	@Transactional
 	//update a row in the database
@@ -110,9 +108,12 @@ public class UniversityDAOImpl implements UniversityDAO {
 			query.setParameter("id", univ_id);
 			query.executeUpdate();
 		}
+		else {
+			return succ = "failed";
+		}
 		return succ = "UpdateSuccessful";
 	}
-	
+
 	@Override
 	@Transactional
 	// delete a university from the database
