@@ -98,7 +98,8 @@ table.ShowTable tfoot .links a {
 		<input type = "text" placeholder= "Enter New Value" name="newValue"required>
 		<input type = "hidden" name ="id" value = "${university.university_id}">
 		
-		<button type="submit">submit</button>
+		<button type="submit">submit</button>		
 	</form>
+	${message}
 </body>
 </html>

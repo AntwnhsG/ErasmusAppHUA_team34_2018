@@ -18,9 +18,12 @@ import javax.persistence.Table;
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "student_id")
 	private int student_id;
+
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -30,16 +33,19 @@ public class Student {
 
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "current_semester")
-	private String current_semester;
-	
+	private int current_semester;
+
 	@Column(name = "num_not_passed_courses")
-	private String num_not_passed_courses;
-	
+	private int num_not_passed_courses;
+
 	@Column(name = "num_of_apps")
 	private int numOfApps;
-	
+
+	@Column(name = "enabled")
+	private int enabled;
+
 	public int getStudent_id() {
 		return student_id;
 	}
@@ -48,22 +54,22 @@ public class Student {
 		this.student_id = student_id;
 	}
 
-	public String getCurrent_semester() {
+	public int getCurrent_semester() {
 		return current_semester;
 	}
 
-	public void setCurrent_semester(String current_semester) {
+	public void setCurrent_semester(int current_semester) {
 		this.current_semester = current_semester;
 	}
 
-	public String getNum_not_passed_courses() {
+	public int getNum_not_passed_courses() {
 		return num_not_passed_courses;
 	}
 
-	public void setNum_not_passed_courses(String num_not_passed_courses) {
+	public void setNum_not_passed_courses(int num_not_passed_courses) {
 		this.num_not_passed_courses = num_not_passed_courses;
 	}
-	
+
 	public int getNumOfApps() {
 		return numOfApps;
 	}
@@ -71,8 +77,6 @@ public class Student {
 	public void setNumOfApps(int numOfApps) {
 		this.numOfApps = numOfApps;
 	}
-
-
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "stud_id")
@@ -101,18 +105,35 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public void setApps(List<Application> applications) {
-		this.applications = applications;	
+		this.applications = applications;
 	}
-	
+
 	public List<Application> getApps() {
 		return applications;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "Student [id=" + student_id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "Student [id=" + student_id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ "]";
 	}
 
 }

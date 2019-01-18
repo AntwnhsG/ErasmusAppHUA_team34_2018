@@ -42,14 +42,6 @@ public class UniversityDAOImpl implements UniversityDAO {
 	public String setUniversity(/* int univ_id, */String country, String city, String univ_name, int available_room) {
 		University univ = new University();
 		Session currentSession = sessionFactory.getCurrentSession();
-		/*
-		 * Query query = currentSession.
-		 * createSQLQuery("INSERT INTO university (country, city ,univ_name, available_room) "
-		 * + "VALUES (:country, :city, :name, :room)"); //query.setParameter("id",
-		 * univ_id); query.setParameter("country", country); query.setParameter("city",
-		 * city); query.setParameter("name", univ_name); query.setParameter("room",
-		 * available_room); query.executeUpdate();
-		 */
 		univ.setAvailable_room(available_room);
 		univ.setCity(city);
 		univ.setUniv_name(univ_name);
@@ -66,52 +58,61 @@ public class UniversityDAOImpl implements UniversityDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query query = currentSession.createQuery("from University where university_id = :id", University.class);
 		query.setParameter("id", id);
-		List<University> univ = query.getResultList();
-		return univ.get(0);
+		University univ = (University) query.uniqueResult();
+		return univ;
 
 	}
 
 	@Override
 	@Transactional
-	//update a row in the database
-	public String updateUniversity (String columnName, String newValue, String id) {
+	// update a row in the database
+	public String updateUniversity(String columnName, String newValue, String id) {
 		String succ;
 		int univ_id = Integer.parseInt(id);
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query query;
 		String cName = columnName.toUpperCase();
-		if(cName.equals("UNIVERSITY ID")) {
-			int nValue = Integer.parseInt(newValue);
-			query = currentSession.createQuery("update University set university_id = :new_id where university_id = :id");
-			query.setParameter("new_id", nValue);
-			query.setParameter("id", univ_id);
-			query.executeUpdate();
-		}else if(cName.equals("NAME")) {
+		if (cName.equals("UNIVERSITY ID")) {
+			try {
+				int nValue = Integer.parseInt(newValue);
+				query = currentSession
+						.createQuery("update University set university_id = :new_id where university_id = :id");
+				query.setParameter("new_id", nValue);
+				query.setParameter("id", univ_id);
+				query.executeUpdate();
+			} catch (NumberFormatException e) {
+				return succ = "failed";
+			}
+		} else if (cName.equals("NAME")) {
 			query = currentSession.createQuery("update University set univ_name = :newName where university_id = :id");
 			query.setParameter("newName", newValue);
 			query.setParameter("id", univ_id);
 			query.executeUpdate();
-		}else if(cName.equals("COUNTRY")) {
+		} else if (cName.equals("COUNTRY")) {
 			query = currentSession.createQuery("update University set country = :newCountry where university_id = :id");
 			query.setParameter("newCountry", newValue);
 			query.setParameter("id", univ_id);
 			query.executeUpdate();
-		}else if(cName.equals("CITY")) {
+		} else if (cName.equals("CITY")) {
 			query = currentSession.createQuery("update University set city = :newCity where university_id = :id");
 			query.setParameter("newCity", newValue);
 			query.setParameter("id", univ_id);
 			query.executeUpdate();
-		}else if(cName.equals("AVAILABLE ROOM")) {
-			int nValue = Integer.parseInt(newValue);
-			query = currentSession.createQuery("update University set available_room = :newAvRoom where university_id = :id");
-			query.setParameter("newAvRoom", nValue);
-			query.setParameter("id", univ_id);
-			query.executeUpdate();
-		}
-		else {
+		} else if (cName.equals("AVAILABLE ROOM")) {
+			try {
+				int nValue = Integer.parseInt(newValue);
+				query = currentSession
+						.createQuery("update University set available_room = :newAvRoom where university_id = :id");
+				query.setParameter("newAvRoom", nValue);
+				query.setParameter("id", univ_id);
+				query.executeUpdate();
+			} catch (NumberFormatException e) {
+				return succ = "failed";
+			}
+		} else {
 			return succ = "failed";
 		}
-		return succ = "UpdateSuccessful";
+		return succ = "Update was Successful";
 	}
 
 	@Override

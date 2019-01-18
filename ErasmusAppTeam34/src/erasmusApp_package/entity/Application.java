@@ -92,6 +92,16 @@ public class Application {
 	public void setUniv_id(int univ_id) {
 		this.univ_id = univ_id;
 	}
+
+	public int getApp_Id() {
+		return app_Id;
+	}
+
+	public void setApp_Id(int app_Id) {
+		this.app_Id = app_Id;
+	}
+	
+	
 	
 	
 }

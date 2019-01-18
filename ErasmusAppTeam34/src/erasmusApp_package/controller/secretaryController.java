@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import erasmusApp_package.entity.Application;
 import erasmusApp_package.entity.University;
 import erasmusApp_package.dao.UniversityDAO;
+import erasmusApp_package.dao.ApplicationDAO;
 
 @Controller
 @RequestMapping("/sec")
@@ -19,6 +21,9 @@ public class secretaryController {
 	
 	@Autowired
 	private UniversityDAO UniversityDAO;
+	
+	@Autowired
+	private ApplicationDAO ApplicationDAO;
 	
 	@RequestMapping("/")
 	public String showOptions() {
@@ -49,7 +54,7 @@ public class secretaryController {
 		String uni_name = request.getParameter("univ_name");
 		int avail_room = Integer.parseInt(request.getParameter("available_room"));
 		String succ = UniversityDAO.setUniversity(/*uni_id, */country, city, uni_name, avail_room);
-		model.addAttribute("Uni_infoAddedMessage", succ);
+		model.addAttribute("message", succ);
 		return "sec_univOptions";
 	}
 	
@@ -74,10 +79,10 @@ public class secretaryController {
 		String id = request.getParameter("id");
 		String succ = UniversityDAO.updateUniversity(columnName, newValue, id);
 		if(succ.equals("failed")) {
-			model.addAttribute("UpdateStatus", "Wrong column name. please try again");
+			model.addAttribute("message", "Wrong column name or type of value. Please try again");
 			return "sec_editUnivPage";
 		}
-		model.addAttribute("UpdateStatus", succ);
+		model.addAttribute("message", succ);
 		return "sec_univOptions";
 	}
 	//NOT READY
@@ -86,7 +91,7 @@ public class secretaryController {
 	public String deleteUni(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
 		String succ = UniversityDAO.deleteUniversity(id);
-		model.addAttribute("deleteStatus", succ);
+		model.addAttribute("message", succ);
 		return "sec_univOptions";
 	}
 	
@@ -95,4 +100,45 @@ public class secretaryController {
 		request.logout();
 		return "/login_form";
 	}
+	
+	@RequestMapping("getStudentId")
+	public String getStudentId() {	
+		return "sec_getStudentId";
+	}
+	
+	@RequestMapping("listApplications")
+	public String listAllApplications(HttpServletRequest request, Model model) {	
+		List<Application> apps = ApplicationDAO.showMyApplications(Integer.parseInt(request.getParameter("id")));
+		if(apps.isEmpty()) {
+			String message = "User has no applocations yet";
+			model.addAttribute("message", message);
+			return "sec_univOptions";
+		}
+		model.addAttribute("apps", apps);
+		return "sec_listAllApplications";
+	}
+	
+	@RequestMapping("deleteApp")
+	public String deleteApp(HttpServletRequest request, Model model) {
+		String message =ApplicationDAO.deleteApp(request.getParameter("id"), request.getParameter("student_id"));
+		model.addAttribute("message", message);
+		return "sec_univOptions";
+	}
+	@RequestMapping("showEditPage")
+	public String showEditPage(HttpServletRequest request, Model model) {
+		model.addAttribute("id", request.getParameter("id"));
+		return "sec_editAppPage";
+	}
+	
+	@RequestMapping("editApplication")
+	public String editApplication(HttpServletRequest request, Model model) {
+		String message = ApplicationDAO.editApplication(request.getParameter("id"), request.getParameter("columnName"), request.getParameter("nValue"));
+		if(message.equals("failed")) {
+			model.addAttribute("message", "Wrong column name or type of value. Please try again");
+			return "sec_editUnivPage";
+		}
+		model.addAttribute("message", message);
+		return "sec_univOptions";
+	}
+	
 }

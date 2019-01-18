@@ -1,5 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,6 +83,13 @@ span.psw {
 	<form:form action="${pageContext.request.contextPath}/authUser" method = "post">
 		<div class="container">
 		
+		  <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+      <font color="red">
+        Your login attempt was not successful due to <br/><br/>
+        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+      </font>
+    </c:if>
+		
 			<label> 
 				<b>Username</b>
 			</label> 
@@ -94,11 +101,13 @@ span.psw {
 			<button type="submit">Login</button>
 			
 		</div>
+		<!-- 
 		<div class="wrapper">
 		
 			<button type="button" class="cancelbtn">Cancel</button>
 			
 		</div>
+		 -->
 	</form:form>
 </body>
 </html>

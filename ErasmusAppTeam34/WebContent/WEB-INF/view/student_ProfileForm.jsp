@@ -21,7 +21,7 @@
 				<th>Number of Applications</th>
 			</tr>
 		</thead>
-<!-- -->
+
 		<tbody>
 				<tr>
 					<td>${student.student_id}</td> 

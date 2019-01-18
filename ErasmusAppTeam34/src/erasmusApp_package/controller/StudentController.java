@@ -30,6 +30,11 @@ public class StudentController {
 
 	private int id;
 
+	@RequestMapping("/")
+	public String studentWelcomePage(HttpServletRequest request, Model model) {
+		return "studentWelcomePage";
+	}
+
 	// send to home page
 	@RequestMapping("/home")
 	public String home() {
@@ -39,13 +44,13 @@ public class StudentController {
 	// send to jsp page for user to fill parameters for his application
 	@RequestMapping("/createAppForm")
 	public String createAppForm(HttpServletRequest request, Model model) {
-		//id = Integer.parseInt(request.getParameter("stud_id"));		
+		// id = Integer.parseInt(request.getParameter("stud_id"));
 		Student student = StudentDAO.getStudInfo(id);
-		if(student.getNumOfApps() >= 3) {
+		if (student.getNumOfApps() >= 3) {
 			String message = "You have reached the limit of the applications you can submit";
 			model.addAttribute("message", message);
 			return "student_home";
-			
+
 		}
 		model.addAttribute("sID", id);
 		return "student_createApplicationForm";
@@ -57,21 +62,27 @@ public class StudentController {
 		String studFirstName = request.getParameter("studFirstName");
 		String studLastName = request.getParameter("studLastName");
 		String studEmail = request.getParameter("studEmail");
-		//id = Integer.parseInt(request.getParameter("stud_id"));
+		// id = Integer.parseInt(request.getParameter("stud_id"));
 		String languageOption = request.getParameter("language_button");
 		int univ_id = Integer.parseInt(request.getParameter("univ_id"));
-		String succ = ApplicationDAO.submitApplication(studFirstName, studLastName, studEmail, id, univ_id,
-				languageOption);
-		StudentDAO.setNumOfApps(id);
-		model2.addAttribute("stud_id", id);
-		model1.addAttribute("appCreatedMessage", succ);
+		List<Integer> univ_ids = ApplicationDAO.getUniv_ids(id);
+		String message = ApplicationDAO.checkUnivDuplication(univ_id, univ_ids);
+		if (message.equals("failed")) {
+			String succ = "You have already submitted an application for this University";
+		} else {
+			String succ = ApplicationDAO.submitApplication(studFirstName, studLastName, studEmail, id, univ_id,
+					languageOption);
+			StudentDAO.setNumOfApps(id);
+			model2.addAttribute("stud_id", id);
+			model1.addAttribute("appCreatedMessage", succ);
+		}
 		return "student_home";
 	}
 
 	@RequestMapping("/myApplications")
 	public String getStudentApps(HttpServletRequest request, Model model) {
 		// get applications from students table
-		//id = Integer.parseInt(request.getParameter("stud_id"));
+		// id = Integer.parseInt(request.getParameter("stud_id"));
 		List<Application> applications = ApplicationDAO.showMyApplications(id);
 		model.addAttribute("applications", applications);
 		return "student_showApplications";
@@ -93,7 +104,7 @@ public class StudentController {
 
 	@RequestMapping("student_Profile")
 	public String showUserProfile(HttpServletRequest request, Model model) {
-		//id = Integer.parseInt(request.getParameter("id"));
+		// id = Integer.parseInt(request.getParameter("id"));
 		Student student = StudentDAO.getStudInfo(id);
 		model.addAttribute("student", student);
 		return "student_ProfileForm";

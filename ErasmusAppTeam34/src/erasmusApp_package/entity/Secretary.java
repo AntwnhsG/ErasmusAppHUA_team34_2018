@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name = "secretary")
 public class Secretary {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "student_id")
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sec_id")
 	private int sec_id;
 
 	@Column(name = "first_name")
@@ -24,11 +24,11 @@ public class Secretary {
 	@Column(name = "username")
 	private String username;
 
-	@Column(name = "user_password")
-	private String user_password;
-
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "enabled")
+	private int enabled;
 
 	public int getSec_id() {
 		return sec_id;
@@ -62,20 +62,20 @@ public class Secretary {
 		this.username = username;
 	}
 
-	public String getUser_password() {
-		return user_password;
-	}
-
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 
 }

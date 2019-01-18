@@ -17,6 +17,12 @@ import erasmusApp_package.dao.SecretaryDAO;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+	
+	@RequestMapping("/")
+	public String showHomePage() {
+		
+		return "HomePage";
+	}
 /*
 	@RequestMapping("/")
 	public String huaErasmusPage() {
@@ -35,7 +41,7 @@ public class HomeController {
 	private SecretaryDAO SecretaryDAO;
 //	process login credentials
 	//@RequestMapping("/processLoginForm")
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/55", method = RequestMethod.GET)
 	//@ResponseBody
 	public String processLoginForm(HttpServletRequest request, Model model) {
 		Principal principal = request.getUserPrincipal();
@@ -61,28 +67,5 @@ public class HomeController {
 		}
 		return returnValue;
 	}
-/*
- * 	NOT READY
-	@RequestMapping("/news")
-	public String news() {
-		return "newsPage";
-	}
-*/
-	/*
-	 * NEEDS TO BE TRANSFERD TO STUDENT CONTROLLER
-	@RequestMapping("/userProfile")
-	public String userProfile() {
-		return "userProfileForm";
-	}
 
-	@RequestMapping("/userApplications")
-	public String userApplications() {
-		return "userApplicationsForm";
-	}
-
-	@RequestMapping("/log_out")
-	public String log_out() {
-		return "login_form";
-	}
-*/
 }

@@ -8,11 +8,9 @@
 </head>
 <body>
 	<form>
-		<button type ="submit" formaction ="univList">Collaborating Universities</button>
-		<button type ="submit" formaction ="create">Register a University</button>
-		<button type = "submit" formaction = "getStudentId">Show Students Applications</button>
+		<button type = "submit" formaction = "showAllUsers">System Users</button>
+		<br>
 		<button type = "submit" formaction = "Log_Out">Log Out</button>
 	</form>
-	${message}
 </body>
 </html>

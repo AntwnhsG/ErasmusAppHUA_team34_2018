@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action = "getStudent">
-		Welcome to the erasmus exchange application
-		<br>
-		Please always double check the information that is listed and the information that you submit!
-		<br>
-		<button type = "submit">PROCEED</button>>
+	<form>
+		<label>
+			<b>Please type the students id</b>
+		</label>
+		<input type = "number" value = "id" name = "id">
+		<button type = "submit" formaction ="listApplications">Submit</button>
 	</form>
 </body>
 </html>
