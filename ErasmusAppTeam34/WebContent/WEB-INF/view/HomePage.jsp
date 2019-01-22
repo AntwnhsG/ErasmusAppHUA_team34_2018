@@ -12,12 +12,13 @@
 		<h1> Welcome</h1>
 		<br>
 	<sec:authorize access="hasRole('USER')">
-		<form>
-			<button type = "submit" formaction ="student/">Fill an Application</button>
-
-			${appCreatedMessage}
-			${message}
-		</form>	
+	<form action = "student/getStudent">
+		Welcome to the erasmus exchange application
+		<br>
+		Please always double check the information that is listed and the information that you submit!
+		<br>
+		<button type = "submit">PROCEED</button>
+	</form>
 	</sec:authorize>
 	<sec:authorize access="hasRole('ADMIN')">
 	<form>

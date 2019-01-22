@@ -11,7 +11,17 @@
 		<label> 
 			<b>Column</b>
 		</label> 
+		<select name = "columnName" required>
+			<option value = "ID">ID</option>
+			<option value = "username">username</option>
+			<option value = "First Name">Employee First Name</option>
+			<option value = "Last Name">Employee Last Name</option>
+			<option value = "Email">Email</option>
+			<option value = "Enabled">Enabled</option>
+		</select>
+		<!-- 
 		<input type = "text" placeholder="Enter Column Name" name="columnName"required>
+		 -->
 		new value is: 
 		<label> 
 			<b>Value</b>

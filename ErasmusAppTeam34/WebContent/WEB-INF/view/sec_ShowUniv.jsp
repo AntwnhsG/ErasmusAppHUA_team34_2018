@@ -5,10 +5,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
-<form method = "post">
+	<div id="wrapper">
+		<div id="header">
+			<h2>CRM - Student Relationship Manager</h2>
+		</div>
+	</div>
+
+	<div id="container">
+		<div id="content">
+<form>
 	<table class="ShowTable">
 		<thead>
 			<tr>
@@ -42,5 +51,7 @@
 	<button type ="submit" formaction = "showUniversity">Edit</button> 
 	<button type ="submit" formaction = "deleteUni">Delete</button>
 	</form>
+	</div>
+	</div>
 </body>
 </html>

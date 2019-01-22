@@ -5,9 +5,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
+	<div id="wrapper">
+		<div id="header">
+			<h2>CRM - Student Relationship Manager</h2>
+		</div>
+	</div>
+
+	<div id="container">
+		<div id="content">
 	<table class="ShowTable">
 		<thead>
 			<tr>
@@ -35,6 +44,8 @@
 			</c:forEach>			
 		</tbody>		
 	</table>
+	</div>
+	</div>
 	<form action = "home">
 		<button type = "submit">Home</button>
 	</form>

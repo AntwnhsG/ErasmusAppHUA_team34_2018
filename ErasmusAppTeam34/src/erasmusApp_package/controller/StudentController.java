@@ -9,15 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import erasmusApp_package.dao.StudentDAO;
 import erasmusApp_package.dao.ApplicationDAO;
+import erasmusApp_package.dao.UniversityDAO;
 import erasmusApp_package.entity.Application;
 import erasmusApp_package.entity.Student;
 import erasmusApp_package.entity.University;
 
+//@RestController
 @Controller
 @RequestMapping("/student")
 public class StudentController {
@@ -27,6 +31,8 @@ public class StudentController {
 
 	@Autowired
 	private ApplicationDAO ApplicationDAO;
+	@Autowired
+	private UniversityDAO UniversityDAO;
 
 	private int id;
 
@@ -48,7 +54,9 @@ public class StudentController {
 		Student student = StudentDAO.getStudInfo(id);
 		if (student.getNumOfApps() >= 3) {
 			String message = "You have reached the limit of the applications you can submit";
-			model.addAttribute("message", message);
+			List<University> universities = UniversityDAO.getUniversities();
+			model.addAttribute("message", message);		
+			model.addAttribute("universities", universities);
 			return "student_home";
 
 		}
@@ -79,7 +87,8 @@ public class StudentController {
 		return "student_home";
 	}
 
-	@RequestMapping("/myApplications")
+	//@RequestMapping("/myApplications")
+	@GetMapping("/myApplications")
 	public String getStudentApps(HttpServletRequest request, Model model) {
 		// get applications from students table
 		// id = Integer.parseInt(request.getParameter("stud_id"));

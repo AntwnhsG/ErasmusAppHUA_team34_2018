@@ -90,7 +90,16 @@ table.ShowTable tfoot .links a {
 		<label> 
 			<b>Column</b>
 		</label> 
+		<select name = "columnName" required>
+			<option value = "University ID">University ID</option>
+			<option value ="Name">Name</option>
+			<option value ="Country">Country</option>
+			<option value ="City">City</option>
+			<option value ="Available Room">Available Room</option>				
+		</select>
+		<!--  
 		<input type = "text" placeholder="Enter Column Name" name="columnName"required>
+		-->
 		new value is: 
 		<label> 
 			<b>Value</b>

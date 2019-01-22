@@ -12,7 +12,19 @@
 	<label>
 		<b>Column Name</b>
 	</label>
+		<select name = "columnName" required>
+			<option value = "ID">ID</option>
+			<option value ="First Name">Student First Name</option>
+			<option value ="Last Name">Student Last Name</option>
+			<option value ="Email">Email</option>
+			<option value ="Students ID">Students ID</option>	
+			<option value ="Understanding of Local language">Understanding of Local language</option>
+			<option value ="University ID">University ID</option>	
+			<option value ="Approved">Approved</option>		
+		</select>
+	<!--  
 	<input type ="text" name = "columnName" required>
+	-->
 	<br>
 	<label>
 		<b>New Value</b>
