@@ -36,7 +36,8 @@ public class StudentController {
 
 	private int id;
 
-	@RequestMapping("/")
+	//@RequestMapping("/")
+	@GetMapping("/")
 	public String studentWelcomePage(HttpServletRequest request, Model model) {
 		return "studentWelcomePage";
 	}
