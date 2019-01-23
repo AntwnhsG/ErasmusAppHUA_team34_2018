@@ -114,6 +114,7 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
+			<!-- svise apo edw kai katw -->
 			            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
