@@ -21,8 +21,8 @@ import erasmusApp_package.entity.Application;
 import erasmusApp_package.entity.Student;
 import erasmusApp_package.entity.University;
 
-//@RestController
-@Controller
+@RestController
+//@Controller
 @RequestMapping("/student")
 public class StudentController {
 
@@ -65,7 +65,8 @@ public class StudentController {
 	}
 
 	// create the application
-	@RequestMapping("/createApplication")
+	//@RequestMapping("/createApplication")
+	@GetMapping("/createApplication")
 	public String createApplication(HttpServletRequest request, Model model1, Model model2) {
 		String studFirstName = request.getParameter("studFirstName");
 		String studLastName = request.getParameter("studLastName");

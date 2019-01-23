@@ -36,6 +36,11 @@ public class adminController {
 		return "adminPage";
 	}
 	
+	@RequestMapping("/home")
+	public String Home() {
+		return "adminPage";
+	}
+	
 	@RequestMapping("/showAllUsers")
 	public String showUsers(HttpServletRequest request, Model model) {
 		List<Student> students = AdminDAO.getStudents();

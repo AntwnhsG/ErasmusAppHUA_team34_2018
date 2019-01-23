@@ -98,5 +98,9 @@
 	</form>
 		</div>
 	</div>
+	<br>
+	<form>
+		<button formaction = "/home">Home</button>
+	</form>
 </body>
 </html>
