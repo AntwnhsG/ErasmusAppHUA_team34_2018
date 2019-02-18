@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>ErasmusApp/Sec/submit-University</title>
 </head>
 <body>
 	<form action = "setUniv">

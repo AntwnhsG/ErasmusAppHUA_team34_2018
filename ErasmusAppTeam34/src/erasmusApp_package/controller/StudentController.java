@@ -21,8 +21,7 @@ import erasmusApp_package.entity.Application;
 import erasmusApp_package.entity.Student;
 import erasmusApp_package.entity.University;
 
-@RestController
-//@Controller
+@Controller
 @RequestMapping("/student")
 public class StudentController {
 
@@ -36,8 +35,7 @@ public class StudentController {
 
 	private int id;
 
-	//@RequestMapping("/")
-	@GetMapping("/")
+	@RequestMapping("/")
 	public String studentWelcomePage(HttpServletRequest request, Model model) {
 		return "studentWelcomePage";
 	}
@@ -55,19 +53,17 @@ public class StudentController {
 		Student student = StudentDAO.getStudInfo(id);
 		if (student.getNumOfApps() >= 3) {
 			String message = "You have reached the limit of the applications you can submit";
-			List<University> universities = UniversityDAO.getUniversities();
 			model.addAttribute("message", message);		
-			model.addAttribute("universities", universities);
 			return "student_home";
-
 		}
+		List<University> universities = UniversityDAO.getUniversities();
+		model.addAttribute("universities", universities);
 		model.addAttribute("sID", id);
 		return "student_createApplicationForm";
 	}
 
 	// create the application
-	//@RequestMapping("/createApplication")
-	@GetMapping("/createApplication")
+	@RequestMapping("/createApplication")
 	public String createApplication(HttpServletRequest request, Model model1, Model model2) {
 		String studFirstName = request.getParameter("studFirstName");
 		String studLastName = request.getParameter("studLastName");
@@ -76,6 +72,14 @@ public class StudentController {
 		String languageOption = request.getParameter("language_button");
 		int univ_id = Integer.parseInt(request.getParameter("univ_id"));
 		List<Integer> univ_ids = ApplicationDAO.getUniv_ids(id);
+		if(univ_ids.get(0).equals(99999)) {
+			String succ = ApplicationDAO.submitApplication(studFirstName, studLastName, studEmail, id, univ_id,
+					languageOption);
+			StudentDAO.setNumOfApps(id);
+			model2.addAttribute("stud_id", id);
+			model1.addAttribute("appCreatedMessage", succ);
+			return "student_home";
+		}
 		String message = ApplicationDAO.checkUnivDuplication(univ_id, univ_ids);
 		if (message.equals("failed")) {
 			String succ = "You have already submitted an application for this University";
@@ -89,8 +93,7 @@ public class StudentController {
 		return "student_home";
 	}
 
-	//@RequestMapping("/myApplications")
-	@GetMapping("/myApplications")
+	@RequestMapping("/myApplications")
 	public String getStudentApps(HttpServletRequest request, Model model) {
 		// get applications from students table
 		// id = Integer.parseInt(request.getParameter("stud_id"));

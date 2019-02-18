@@ -1,5 +1,6 @@
 package erasmusApp_package.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -139,9 +140,13 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	@Transactional
 	public List<Integer> getUniv_ids(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
+		List<Integer> univ_ids = new ArrayList<Integer>();
 		Query query = currentSession.createQuery("select univ_id from Application where stud_id = '"+id+"'");
-		query.executeUpdate();
-		List<Integer> univ_ids = query.getResultList(); 
+		if(query.getResultList().isEmpty()) {
+			univ_ids.add(99999);
+			return univ_ids;
+		}
+			 univ_ids = query.getResultList();		
 		return univ_ids;
 	}
 	
@@ -157,6 +162,26 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			}
 		}
 		return message;
+	}
+/*
+	@Override
+	@Transactional
+	public List<Application> getAllApps() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("from Application");
+		List<Application> apps = query.getResultList();
+		return apps;
+		
+	}
+	*/
+	@Override
+	@Transactional
+	public String setAppStatus(String status, int appID) {
+		String message;
+		Session currentSession = sessionFactory.getCurrentSession();	
+			Query query = currentSession.createQuery("update Application set isApproved = '"+status+"' where app_id ='"+appID+"'");
+			query.executeUpdate();
+		return message = "Status changed successfully";
 	}
 
 }

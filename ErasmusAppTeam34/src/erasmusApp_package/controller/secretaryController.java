@@ -29,6 +29,12 @@ public class secretaryController {
 	public String showOptions() {
 		return "sec_univOptions";
 	}
+	
+	@RequestMapping("/home")
+	public String home() {
+		return "sec_univOptions";
+	}
+	
 	//get all universities from the database
 	@RequestMapping("/univList")
 	public String getUniversities(Model model){

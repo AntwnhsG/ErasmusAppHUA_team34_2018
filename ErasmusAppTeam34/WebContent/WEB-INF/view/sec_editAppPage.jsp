@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>ErasmusApp/Sec/EditApplications</title>
 </head>
 <body>
 <form>
@@ -32,6 +32,9 @@
 	<input type ="text" name = "nValue" required>
 	<br>
 	<button type ="submit" formaction ="editApplication">Edit</button>
+</form>
+<form>
+	<button formaction = "home">Home</button>
 </form>
 </body>
 </html>

@@ -11,4 +11,6 @@ public interface ApplicationDAO {
 	public String editApplication(String id, String columnName, String newValue);
 	public List<Integer> getUniv_ids(int id);
 	public String checkUnivDuplication(int univ_id, List<Integer> univ_ids);
+	//public List<Application> getAllApps();
+	public String setAppStatus(String status, int appID);
 }

@@ -4,15 +4,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>ErasmusApp/Secretary</title>
 </head>
 <body>
 	<form>
 		<label>
-			<b>Please type the students id</b>
+			<b>Please type the student's id</b>
 		</label>
 		<input type = "number" value = "id" name = "id">
 		<button type = "submit" formaction ="listApplications">Submit</button>
+	</form>
+	<form>
+		<button formaction = "home">Home</button>
 	</form>
 </body>
 </html>

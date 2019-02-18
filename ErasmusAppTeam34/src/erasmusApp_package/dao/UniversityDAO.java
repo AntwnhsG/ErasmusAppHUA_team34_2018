@@ -10,4 +10,5 @@ public interface UniversityDAO {
 	public University getUniversity(int id);
 	public String updateUniversity (String columnName, String newValue, String id);
 	public String deleteUniversity(String id);
+	public String univRoomUpdate(int univ_id);
 }

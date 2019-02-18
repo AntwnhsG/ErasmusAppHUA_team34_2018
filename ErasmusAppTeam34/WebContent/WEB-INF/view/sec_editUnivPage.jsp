@@ -5,68 +5,47 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>ErasmusApp/Sec/EditUniversities</title>
 <style>
-table.ShowTable {
-	border: 1px solid #3042EE;
-	background-color: #EEEEEE;
-	width: 100%;
-	text-align: left;
-	border-collapse: collapse;
+	table.minimalistBlack {
+  border: 3px solid #000000;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
 }
-
-table.ShowTable td, table.ShowTable th {
-	border: 2px solid #AAAAAA;
-	padding: 4px 2px;
+table.minimalistBlack td, table.minimalistBlack th {
+  border: 1px solid #000000;
+  padding: 5px 4px;
 }
-
-table.ShowTable tbody td {
-	font-size: 15px;
-	color: #333333;
+table.minimalistBlack tbody td {
+  font-size: 13px;
 }
-
-table.ShowTable tr:nth-child(even) {
-	background: #C9F5BD;
+table.minimalistBlack thead {
+  background: #CFCFCF;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  border-bottom: 3px solid #000000;
 }
-
-table.ShowTable thead {
-	background: #191919;
-	background: -moz-linear-gradient(top, #525252 0%, #303030 66%, #191919 100%);
-	background: -webkit-linear-gradient(top, #525252 0%, #303030 66%, #191919 100%);
-	background: linear-gradient(to bottom, #525252 0%, #303030 66%, #191919 100%);
-	border-bottom: 2px solid #444444;
+table.minimalistBlack thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
 }
-
-table.ShowTable thead th {
-	font-size: 15px;
-	font-weight: bold;
-	color: #5EE5D0;
-	border-left: 2px solid #D0E4F5;
+table.minimalistBlack tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  border-top: 3px solid #000000;
 }
-
-table.ShowTable thead th:first-child {
-	border-left: none;
-}
-
-table.ShowTable tfoot td {
-	font-size: 8px;
-}
-
-table.ShowTable tfoot .links {
-	text-align: right;
-}
-
-table.ShowTable tfoot .links a {
-	display: inline-block;
-	background: #1C6EA4;
-	color: #FFFFFF;
-	padding: 2px 8px;
-	border-radius: 5px;
+table.minimalistBlack tfoot td {
+  font-size: 14px;
 }
 </style>
 </head>
 <body>
-	<table class="ShowTable">
+	<table class="minimalistBlack">
 		<thead>
 			<tr>
 				<th>University ID</th>
@@ -108,6 +87,9 @@ table.ShowTable tfoot .links a {
 		<input type = "hidden" name ="id" value = "${university.university_id}">
 		
 		<button type="submit">submit</button>		
+	</form>
+	<form>
+		<button formaction = "home">Home</button>
 	</form>
 	${message}
 </body>

@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ErasmusApp/Secretary</title>
+<title>ErasmusApp/Council</title>
 </head>
 <body>
-	welcome 
-	<br>
-	<a href = "sec/">University Options</a>
+	<form>
+		<button formaction = "showStudents">Show All Students</button>
+		<button formaction = "Log_Out">Log Out</button>
+	</form>
+	${message}
 </body>
 </html>

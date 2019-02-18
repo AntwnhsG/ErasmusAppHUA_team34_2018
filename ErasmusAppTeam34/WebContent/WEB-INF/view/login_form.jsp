@@ -73,6 +73,7 @@ span.psw {
 }
 </style>
 </head>
+<title>Login Page</title>
 <body>
 	<form>
 		<div class="wrapper">
@@ -89,7 +90,8 @@ span.psw {
         <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
       </font>
     </c:if>
-		
+	</div>	
+	<div class="container">
 			<label> 
 				<b>Username</b>
 			</label> 

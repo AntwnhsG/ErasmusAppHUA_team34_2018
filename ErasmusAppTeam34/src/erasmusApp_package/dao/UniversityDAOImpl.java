@@ -127,4 +127,22 @@ public class UniversityDAOImpl implements UniversityDAO {
 		query.executeUpdate();
 		return succ = "Delete Successful";
 	}
+	
+	@Override
+	@Transactional
+	public String univRoomUpdate(int univ_id) {
+		String message ="";
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("select available_room from University where university_id = '"+univ_id+"'");
+		int avRoom = (int)query.uniqueResult();
+		if(avRoom !=0) {
+		avRoom = avRoom-1;
+		Query query2 = currentSession.createQuery("update University set available_room = '"+avRoom+"'"+"where university_id = '"+univ_id+"'");
+		query2.executeUpdate();
+		message = "success";
+		}else {
+			message = "failed";
+		}
+		return message;
+	}
 }
